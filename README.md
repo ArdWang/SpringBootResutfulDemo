@@ -20,16 +20,19 @@ Header 需要修改为 Content-type:application/json
 项目包含配置好的日志Log4j
 
 Mapper代码
+
+
 '''
+
  @Mapper
-public interface UserMapper {
-    /**
-     * 获取账号和密码
-     * @param email
-     * @param password
-     * @return UserModel
-     */
-    UserModel getUser(String email,String password);
+ public interface UserMapper {
+     /**
+      * 获取账号和密码
+      * @param email
+      * @param password
+      * @return UserModel
+      */
+     UserModel getUser(String email,String password);
 
 
     /**
