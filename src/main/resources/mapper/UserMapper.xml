@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ril.rilcompany.mapper.UserMapper">
+    <sql id="USER_TABLE">
+        user_tb
+    </sql>
+
+    <sql id="USER_COLUMN">
+        userid,email,password,usercode,username,sex,isadmin
+    </sql>
+
+    <!--logUser-->
+    <select id="getUser" resultType="com.ril.rilcompany.model.UserModel">
+        SELECT
+        <include refid="USER_COLUMN"/>
+        FROM
+        <include refid="USER_TABLE"/>
+       <where>
+            <if test="email!=null">
+              AND email = #{email, jdbcType=VARCHAR}
+            </if>
+            <if test="password!=null">
+              AND password = #{password, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <!--addUser-->
+    <insert id="addUser" parameterType="map">
+        INSERT INTO
+        <include refid="USER_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            usercode,email,password,username
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            #{usercode,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR}
+        </trim>
+    </insert>
+
+
+    <!--queryUser-->
+    <select id="queryUser" resultType="com.ril.rilcompany.model.UserModel">
+        SELECT
+        <include refid="USER_COLUMN"/>
+        FROM
+        <include refid="USER_TABLE"/>
+        <where>
+            <if test="email!=null">
+                AND email = #{email, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+
+    <!--editUser-->
+    <update id="updateUser" parameterType="com.ril.rilcompany.model.UserModel">
+        UPDATE
+        <include refid="USER_TABLE"/>
+        <set>
+            <if test="usercode != null">
+                usercode = #{usercode,jdbcType=VARCHAR},
+            </if>
+
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+
+            <if test="isadmin != null">
+                isadmin = #{isadmin,jdbcType=INTEGER},
+            </if>
+        </set>
+        WHERE
+        <if test="userid != null">
+            userid = #{userid,jdbcType=INTEGER}
+        </if>
+    </update>
+
+
+    <!--deleteUser-->
+    <delete id="deleteUser">
+        DELETE FROM
+        <include refid="USER_TABLE"/>
+        WHERE
+        userid = #{userid,jdbcType=INTEGER}
+    </delete>
+
+
+</mapper>
