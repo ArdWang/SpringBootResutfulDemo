@@ -6,7 +6,7 @@
     </sql>
 
     <sql id="USER_COLUMN">
-        userid,email,password,usercode,username,sex,isadmin
+        userid,username,password,usersex,useremail,userphone
     </sql>
 
     <!--logUser-->
@@ -16,8 +16,8 @@
         FROM
         <include refid="USER_TABLE"/>
        <where>
-            <if test="email!=null">
-              AND email = #{email, jdbcType=VARCHAR}
+            <if test="username!=null">
+              AND username = #{username, jdbcType=VARCHAR}
             </if>
             <if test="password!=null">
               AND password = #{password, jdbcType=VARCHAR}
@@ -30,10 +30,10 @@
         INSERT INTO
         <include refid="USER_TABLE"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            usercode,email,password,username
+            username,password,useremial,usersex,userphone
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            #{usercode,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR}
+            #{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{useremail,jdbcType=VARCHAR},#{useresex,jdbcType=VARCHAR},#{userphone,jdbcType=VARCHAR}
         </trim>
     </insert>
 
@@ -45,8 +45,8 @@
         FROM
         <include refid="USER_TABLE"/>
         <where>
-            <if test="email!=null">
-                AND email = #{email, jdbcType=VARCHAR}
+            <if test="username!=null">
+                AND username = #{username, jdbcType=VARCHAR}
             </if>
         </where>
     </select>
@@ -57,28 +57,24 @@
         UPDATE
         <include refid="USER_TABLE"/>
         <set>
-            <if test="usercode != null">
-                usercode = #{usercode,jdbcType=VARCHAR},
-            </if>
-
-            <if test="email != null">
-                email = #{email,jdbcType=VARCHAR},
-            </if>
-
-            <if test="password != null">
-                password = #{password,jdbcType=VARCHAR},
-            </if>
-
             <if test="username != null">
                 username = #{username,jdbcType=VARCHAR},
             </if>
 
-            <if test="sex != null">
-                sex = #{sex,jdbcType=VARCHAR},
+            <if test="password != null">
+                email = #{password,jdbcType=VARCHAR},
             </if>
 
-            <if test="isadmin != null">
-                isadmin = #{isadmin,jdbcType=INTEGER},
+            <if test="usersex != null">
+                password = #{usersex,jdbcType=VARCHAR},
+            </if>
+
+            <if test="useremail != null">
+                username = #{useremail,jdbcType=VARCHAR},
+            </if>
+
+            <if test="userphone != null">
+                sex = #{userphone,jdbcType=VARCHAR},
             </if>
         </set>
         WHERE

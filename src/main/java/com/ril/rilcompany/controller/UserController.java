@@ -155,11 +155,10 @@ public class UserController extends BaseController{
 
             UserModel user = new UserModel();
             user.setUserid(req.getUserid());
-            user.setUsercode(req.getUsercode());
-            user.setEmail(req.getEmail());
             user.setPassword(req.getPassword());
-            user.setSex(req.getSex());
-            user.setIsadmin(req.getIsadmin());
+            user.setUseremail(req.getEmail());
+            user.setPassword(req.getPassword());
+            user.setUsersex(req.getSex());
 
             int edit = userService.updateUser(user);
 

@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 public class UserModel {
 
+
     public String getUserid() {
         return userid;
     }
@@ -20,20 +21,20 @@ public class UserModel {
         this.userid = userid;
     }
 
-    public String getUsercode() {
-        return usercode;
+    public String getUserphone() {
+        return userphone;
     }
 
-    public void setUsercode(String usercode) {
-        this.usercode = usercode;
+    public void setUserphone(String userphone) {
+        this.userphone = userphone;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUseremail() {
+        return useremail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUseremail(String useremail) {
+        this.useremail = useremail;
     }
 
     public String getPassword() {
@@ -52,33 +53,24 @@ public class UserModel {
         this.username = username;
     }
 
-    public String getSex() {
-        return sex;
+    public String getUsersex() {
+        return usersex;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getIsadmin() {
-        return isadmin;
-    }
-
-    public void setIsadmin(String isadmin) {
-        this.isadmin = isadmin;
+    public void setUsersex(String usersex) {
+        this.usersex = usersex;
     }
 
     private String userid;
 
-    private String usercode;
+    private String userphone;
 
-    private String email;
+    private String useremail;
 
     private String password;
 
     private String username;
 
-    private String sex;
+    private String usersex;
 
-    private String isadmin;
 }
